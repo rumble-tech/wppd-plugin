@@ -1,0 +1,30 @@
+{
+    "name": "rumble/wppd-plugin",
+    "description": "",
+    "type": "wordpress-plugin",
+    "license": "",
+    "autoload": {
+        "psr-4": {
+            "Rumble\\WPPD\\": "src/"
+        }
+    },
+    "scripts": {
+        "build": "",
+        "dev": "docker-compose -f docker/compose.dev.yml -f docker/compose.dev.override.yml up -d",
+        "cs:check": "phpcs --standard=WordPress --extensions=php --ignore=vendor .",
+        "cs:fix": "phpcbf --standard=WordPress --extensions=php --ignore=vendor ."
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.9",
+        "wp-coding-standards/wpcs": "^3.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
+    },
+    "allow-plugins": {
+        "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

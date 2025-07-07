@@ -7,7 +7,7 @@ services:
         environment:
             WORDPRESS_DB_HOST: db
         volumes:
-            - ../plugin:/var/www/html/wp-content/plugins/rumble-wppd:ro
+            - ..:/var/www/html/wp-content/plugins/rumble-wppd:ro
             - wordpress-data:/var/www/html/wp-content
         depends_on:
             - db
