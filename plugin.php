@@ -7,14 +7,20 @@
  */
 
 namespace Rumble\WPPD;
+
 use Rumble\WPPD\Settings\SettingsMenu;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if (file_exists(__DIR__ . '/vendor/autoload.php') ) {
-    include __DIR__ . '/vendor/autoload.php';
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	include __DIR__ . '/vendor/autoload.php';
 }
 
-add_action( 'admin_menu', SettingsMenu::add_menu_entry(...) );
+if ( ! defined( 'DISABLE_WP_CRON' ) ) {
+	define( 'DISABLE_WP_CRON', true );
+}
+
+add_action( 'plugins_loaded', SettingsMenu::init( ... ) );
+add_action( 'init', Scheduler::init( ... ) );

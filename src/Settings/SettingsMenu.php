@@ -2,25 +2,26 @@
 
 namespace Rumble\WPPD\Settings;
 
+use Rumble\WPPD\ActionHandlers;
+
 final class SettingsMenu {
-    public const OPTION_PAGE = 'rumble-wppd-settings';
-    public const OPTION_GROUP = 'rumble-wppd-settings-options';
+	public const PAGE_SLUG = 'rumble-wppd-settings';
 
-    public static function add_menu_entry(): void {
-        add_menu_page(
-            'rumble',
-            'WP Plugin Dashboard',
-            'manage_options',
-            self::OPTION_PAGE,
-            self::render_menu_page(...)
-        );
-    }
+	public static function init() {
+		add_action( 'admin_menu', self::add_menu_entry( ... ) );
+		add_action( 'admin_init', SettingsPage::register_settings( ... ) );
+		add_action( 'admin_post_' . SettingsPage::ACTION_COLLECTOR_REGISTER, ActionHandlers::register( ... ) );
+		add_action( 'admin_post_' . SettingsPage::ACTION_COLLECTOR_UPDATE, ActionHandlers::update( ... ) );
+		add_action( 'admin_post_' . SettingsPage::ACTION_COLLECTOR_CLEAR, ActionHandlers::clear( ... ) );
+	}
 
-    public static function render_menu_page(): void {
-        ?>
-        <div class="wrap">
-            <h1>Rumble WPPD</h1>
-    </div>
-    <?php
-    }
+	private static function add_menu_entry(): void {
+		add_menu_page(
+			'Rumble WPPD',
+			'Rumble WPPD',
+			'manage_options',
+			self::PAGE_SLUG,
+			SettingsPage::render( ... )
+		);
+	}
 }
