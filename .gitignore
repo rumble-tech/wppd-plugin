@@ -1,3 +1,4 @@
 /vendor/
+.idea
 docker/*override*
 !docker/compose.dev.override.example.yml
