@@ -4,6 +4,9 @@
     "type": "wordpress-plugin",
     "license": "",
     "version": "0.1.0",
+    "require": {
+        "php": ">=7.4"
+    },
     "autoload": {
         "psr-4": {
             "Rumble\\WPPD\\": "src/"
