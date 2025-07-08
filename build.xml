@@ -1,0 +1,20 @@
+<project name="rumble-wppd" default="build" basedir=".">
+    <property name="version" value="${version}" />
+    <property name="build.file" value="rumble-wppd.${version}.zip" />
+
+    <target name="clean">
+        <delete file="${build.file}" quiet="true" />
+    </target>
+
+    <target name="build" depends="clean">
+        <zip destfile="${build.file}" prefix="rumble-wppd/">
+            <fileset dir=".">
+                <include name="README.md" />
+                <include name="composer.json" />
+                <include name="plugin.php" />
+                <include name="src/**" />
+                <include name="vendor/**" />
+            </fileset>
+        </zip>
+    </target>
+</project>

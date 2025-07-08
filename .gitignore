@@ -2,3 +2,4 @@
 .idea
 docker/*override*
 !docker/compose.dev.override.example.yml
+rumble-wppd.*.*.*.zip

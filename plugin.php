@@ -24,4 +24,4 @@ if ( ! defined( 'DISABLE_WP_CRON' ) ) {
 
 add_action( 'plugins_loaded', SettingsMenu::init( ... ) );
 add_action( 'init', Scheduler::init( ... ) );
-register_deactivation_hook( __FILE__, array( Scheduler::class, 'deactivate' ) );
+register_deactivation_hook( __FILE__,  [ Scheduler::class, 'deactivate'] );
