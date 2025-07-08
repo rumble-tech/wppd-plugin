@@ -10,7 +10,7 @@
     },
     "scripts": {
         "build": "",
-        "dev": "docker-compose -f docker/compose.dev.yml -f docker/compose.dev.override.yml up -d",
+        "dev": "docker-compose -f docker/compose.dev.yml -f docker/compose.dev.override.yml up",
         "cs:check": "phpcs --standard=WordPress --extensions=php --ignore=vendor .",
         "cs:fix": "phpcbf --standard=WordPress --extensions=php --ignore=vendor ."
     },
