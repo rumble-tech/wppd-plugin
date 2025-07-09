@@ -1,8 +1,8 @@
 {
     "name": "rumble/wppd-plugin",
-    "description": "",
+    "description": "A plugin to collector information about the WordPress instance and sends it to the configured collector service.",
     "type": "wordpress-plugin",
-    "license": "",
+    "license": "GPL v2 (or later)",
     "version": "0.1.0",
     "require": {
         "php": ">=7.4"
