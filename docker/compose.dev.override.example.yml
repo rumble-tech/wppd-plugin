@@ -1,0 +1,14 @@
+services:
+    wordpress:
+        ports:
+            - "YOUR_PORT:80"
+        environment:
+            WORDPRESS_DB_USER: YOUR_WP_DB_USER
+            WORDPRESS_DB_PASSWORD: YOUR_WP_DB_PASSWORD
+            WORDPRESS_DB_NAME: YOUR_WP_DB_NAME
+    db:
+        environment:
+            MYSQL_DATABASE: YYOUR_WP_DB_NAME
+            MYSQL_USER: YOUR_WP_DB_USER
+            MYSQL_PASSWORD: YOUR_WP_DB_PASSWORD
+            MYSQL_ROOT_PASSWORD: YOUR_WP_DB_ROOT_PASSWORD
