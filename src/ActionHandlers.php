@@ -17,7 +17,7 @@ final class ActionHandlers {
 
 		$response = API::send_registration_request( $collector_url, $collector_environment );
 
-		if ( $response['message'] !== 'Site registered successfully' && $response['message'] !== 'Site updated successfully' ) {
+		if ( $response['message'] !== 'Site registered successfully' && $response['message'] !== 'Site re-registered successfully' ) {
 			set_transient(
 				SettingsPage::TRANSIENT_COLLECTOR_RESPONSE,
 				array(

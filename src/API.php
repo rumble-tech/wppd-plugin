@@ -43,7 +43,7 @@ final class API {
 
 	public static function send_update_request( string $collector_url, int $id, string $token ): bool {
 		$response = wp_remote_post(
-			$collector_url . '/site/update/' . $id,
+			$collector_url . '/site/' . $id . '/update',
 			array(
 				'method'  => 'PUT',
 				'headers' => array(
