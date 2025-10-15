@@ -5,13 +5,18 @@ namespace Rumble\WPPD;
 final class API {
 
 	public static function send_registration_request( string $collector_url, string $environment ): array {
+        $headers = array_merge(
+            array(
+                'Content-Type' => 'application/json',
+            ),
+            self::get_basic_auth_header()
+        );
+
 		$response = wp_remote_post(
 			$collector_url . '/site/register',
 			array(
 				'method'  => 'POST',
-				'headers' => array(
-					'Content-Type' => 'application/json',
-				),
+				'headers' => $headers,
 				'body'    => json_encode(
 					array(
 						'name'        => get_bloginfo( 'name' ),
@@ -42,14 +47,19 @@ final class API {
 	}
 
 	public static function send_update_request( string $collector_url, int $id, string $token ): bool {
+        $headers = array_merge(
+            array(
+                'Content-Type' => 'application/json',
+                'x-auth-token' => $token,
+            ),
+            self::get_basic_auth_header(),
+        );
+
 		$response = wp_remote_post(
 			$collector_url . '/site/' . $id . '/update',
 			array(
 				'method'  => 'PUT',
-				'headers' => array(
-					'Content-Type'  => 'application/json',
-					'Authorization' => 'Bearer ' . $token,
-				),
+				'headers' => $headers,
 				'body'    => json_encode(
 					array(
 						'name'       => get_bloginfo( 'name' ),
@@ -97,4 +107,17 @@ final class API {
 
 		return $mappedPlugins;
 	}
+
+    private static function get_basic_auth_header(): array {
+        $username = defined( 'WPPD_BASIC_AUTH_USER' ) ? WPPD_BASIC_AUTH_USER : getenv( 'WPPD_BASIC_AUTH_USER' );
+        $password = defined( 'WPPD_BASIC_AUTH_PASSWORD' ) ? WPPD_BASIC_AUTH_PASSWORD : getenv( 'WPPD_BASIC_AUTH_PASSWORD' );
+
+        if ( empty ( $username ) || empty ( $password ) ) {
+            return array();
+        }
+
+        return array(
+            'Authorization' => 'Basic ' . base64_encode( $username . ':' . $password ),
+        );
+    }
 }
