@@ -6,6 +6,9 @@ services:
             WORDPRESS_DB_USER: YOUR_WP_DB_USER
             WORDPRESS_DB_PASSWORD: YOUR_WP_DB_PASSWORD
             WORDPRESS_DB_NAME: YOUR_WP_DB_NAME
+            # Basic Authentication is optional. If it is not defined as environment variables or as constants in "wp-config.php", the basic auth header won't be sent to the collector service.
+            WPPD_BASIC_AUTH_USER: YOUR_BASIC_AUTH_USERNAME
+            WPPD_BASIC_AUTH_PASSWORD: YOUR_BASIC_AUTH_PASSWORD
     db:
         environment:
             MYSQL_DATABASE: YYOUR_WP_DB_NAME
