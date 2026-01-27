@@ -13,7 +13,7 @@ final class API {
         );
 
 		$response = wp_remote_post(
-			$collector_url . '/site/register',
+			$collector_url . '/site',
 			array(
 				'method'  => 'POST',
 				'headers' => $headers,
@@ -36,7 +36,7 @@ final class API {
 
 		$body = json_decode( wp_remote_retrieve_body( $response ), true );
 
-		if ( ! isset( $body['message'] ) || ! isset( $body['data'] ) || ! isset( $body['data']['id'] ) || ! isset( $body['data']['token'] ) ) {
+		if ( ! isset( $body['message'] ) || ! isset( $body['data'] ) || ! isset( $body['data']['id'] ) || ! isset( $body['data']['apiKey'] ) ) {
 			return array(
 				'message' => 'Invalid response from collector service',
 				'data'    => null,
@@ -56,7 +56,7 @@ final class API {
         );
 
 		$response = wp_remote_post(
-			$collector_url . '/site/' . $id . '/update',
+			$collector_url . '/site/' . $id,
 			array(
 				'method'  => 'PUT',
 				'headers' => $headers,
