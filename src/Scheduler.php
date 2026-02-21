@@ -21,15 +21,15 @@ final class Scheduler {
 	public static function execute_job(): void {
 		$collector_url   = get_option( SettingsPage::OPTION_COLLECTOR_URL );
 		$collector_id    = get_option( SettingsPage::OPTION_COLLECTOR_ID );
-		$collector_token = get_option( SettingsPage::OPTION_COLLECTOR_TOKEN );
+		$collector_api_key = get_option( SettingsPage::OPTION_COLLECTOR_API_KEY );
 
-		$response = API::send_update_request( $collector_url, $collector_id, $collector_token );
+		$response = API::send_update_request( $collector_url, $collector_id, $collector_api_key );
 
 		if ( $response === false ) {
 			delete_option( SettingsPage::OPTION_COLLECTOR_URL );
 			delete_option( SettingsPage::OPTION_COLLECTOR_ENVIRONMENT );
 			delete_option( SettingsPage::OPTION_COLLECTOR_ID );
-			delete_option( SettingsPage::OPTION_COLLECTOR_TOKEN );
+			delete_option( SettingsPage::OPTION_COLLECTOR_API_KEY );
 		}
 	}
 

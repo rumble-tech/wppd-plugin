@@ -8,7 +8,7 @@ final class SettingsPage {
 	public const OPTION_COLLECTOR_URL         = 'rumble-wppd-collector-url';
 	public const OPTION_COLLECTOR_ENVIRONMENT = 'rumble-wppd-collector-environment';
 	public const OPTION_COLLECTOR_ID          = 'rumble-wppd-collector-id';
-	public const OPTION_COLLECTOR_TOKEN       = 'rumble-wppd-collector-token';
+	public const OPTION_COLLECTOR_API_KEY       = 'rumble-wppd-collector-api-key';
 
 	public const ACTION_COLLECTOR_REGISTER = 'rumble-wppd-collector-register';
 	public const ACTION_COLLECTOR_UPDATE   = 'rumble-wppd-collector-update';
@@ -35,16 +35,16 @@ final class SettingsPage {
 			)
 		);
 		register_setting( self::OPTION_GROUP, self::OPTION_COLLECTOR_ID, array( 'type' => 'int' ) );
-		register_setting( self::OPTION_GROUP, self::OPTION_COLLECTOR_TOKEN, array( 'type' => 'string' ) );
+		register_setting( self::OPTION_GROUP, self::OPTION_COLLECTOR_API_KEY, array( 'type' => 'string' ) );
 	}
 
 	public static function render(): void {
 		$collector_url         = get_option( self::OPTION_COLLECTOR_URL );
 		$collector_environment = get_option( self::OPTION_COLLECTOR_ENVIRONMENT );
 		$collector_id          = get_option( self::OPTION_COLLECTOR_ID );
-		$collector_token       = get_option( self::OPTION_COLLECTOR_TOKEN );
+		$collector_api_key       = get_option( self::OPTION_COLLECTOR_API_KEY );
 
-		$is_registered = ! empty( $collector_url ) && ! empty( $collector_id ) && ! empty( $collector_token );
+		$is_registered = ! empty( $collector_url ) && ! empty( $collector_id ) && ! empty( $collector_api_key );
 
 		$collector_response = get_transient( self::TRANSIENT_COLLECTOR_RESPONSE );
 

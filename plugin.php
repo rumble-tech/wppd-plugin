@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Rumble WPPD Plugin
- * Version: 0.3.0
+ * Version: 1.0.0
  * Author: rumble GmbH & Co KG
  * Author URI: https://rumble.de
  */

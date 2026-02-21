@@ -17,7 +17,7 @@ final class ActionHandlers {
 
 		$response = API::send_registration_request( $collector_url, $collector_environment );
 
-		if ( $response['message'] !== 'Site registered successfully' && $response['message'] !== 'Site re-registered successfully' ) {
+		if ( $response['message'] !== 'Successfully registered site' && $response['message'] !== 'Successfully re-registered site' ) {
 			set_transient(
 				SettingsPage::TRANSIENT_COLLECTOR_RESPONSE,
 				array(
@@ -33,7 +33,7 @@ final class ActionHandlers {
 		update_option( SettingsPage::OPTION_COLLECTOR_URL, $collector_url );
 		update_option( SettingsPage::OPTION_COLLECTOR_ENVIRONMENT, $collector_environment );
 		update_option( SettingsPage::OPTION_COLLECTOR_ID, $response['data']['id'] );
-		update_option( SettingsPage::OPTION_COLLECTOR_TOKEN, $response['data']['token'] );
+		update_option( SettingsPage::OPTION_COLLECTOR_API_KEY, $response['data']['apiKey'] );
 
 		set_transient(
 			SettingsPage::TRANSIENT_COLLECTOR_RESPONSE,
@@ -55,9 +55,9 @@ final class ActionHandlers {
 
 		$collector_url   = get_option( SettingsPage::OPTION_COLLECTOR_URL );
 		$collector_id    = get_option( SettingsPage::OPTION_COLLECTOR_ID );
-		$collector_token = get_option( SettingsPage::OPTION_COLLECTOR_TOKEN );
+		$collector_api_key = get_option( SettingsPage::OPTION_COLLECTOR_API_KEY );
 
-		$response = API::send_update_request( $collector_url, $collector_id, $collector_token );
+		$response = API::send_update_request( $collector_url, $collector_id, $collector_api_key );
 		if ( ! $response ) {
 			set_transient(
 				SettingsPage::TRANSIENT_COLLECTOR_RESPONSE,
@@ -92,7 +92,7 @@ final class ActionHandlers {
 		delete_option( SettingsPage::OPTION_COLLECTOR_URL );
 		delete_option( SettingsPage::OPTION_COLLECTOR_ENVIRONMENT );
 		delete_option( SettingsPage::OPTION_COLLECTOR_ID );
-		delete_option( SettingsPage::OPTION_COLLECTOR_TOKEN );
+		delete_option( SettingsPage::OPTION_COLLECTOR_API_KEY );
 
 		set_transient(
 			SettingsPage::TRANSIENT_COLLECTOR_RESPONSE,
